@@ -61,7 +61,60 @@ class HashTable{
     void HashTable::removeItem(int key){
         int hashValue= hashFunction(key);
         auto&cell = table[hashValue];
-        atuo bItr =begin(cell);
-        
+        auto bItr =begin(cell);
+        bool keyExists=false;
+        for(; bItr!=end(cell); bItr++){
+            if(bItr->first==key){
+            keyExists= true;
+            bItr=cell.erase(bItr); // it will return next iterator ,no need to continue 
+            cout<<"[INFO] key exits. value removed" <<endl;
+            break;
+        }
+        }
+        if(!keyExists){
+            cout<<"[WARNING] iterm not found "<<endl;
+        }
+    }
 
+    void HashTable::printTable(){
+        for(int i{}; i<hashGroups; ++i){
+            if(table[i].size()==0) continue;
+
+            auto bItr= table[i].begin();
+            for(; bItr != table[i].end(); bItr++){
+                cout<<"[INFO] key:" <<bItr->first<<"value: "<<bItr->second<<endl;
+            }
+
+        }
+        return;
+    }
+
+    int main(){
+        HashTable HT;
+
+        if(HT.isEmpty()){
+            cout<<"correct answer . good job "<<endl;
+        }else{
+            cout<<"ohoh, we need to check out code"<<endl;
+        };
+
+        HT.insertItem(905,"jim");
+        HT.insertItem(345,"sam");
+        HT.insertItem(234,"alex");
+        HT.insertItem(231,"sandy");
+        HT.insertItem(123,"rob");
+
+        HT.printTable();
+
+        HT.removeItem(322);
+        HT.removeItem(123);
+
+
+        if(HT.isEmpty()){
+            cout<<"some mistakes"<<endl;
+        }else{
+            cout<<"ok no problem so far "<<endl;
+        };
+
+        return 0; 
     }
