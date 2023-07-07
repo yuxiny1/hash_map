@@ -26,15 +26,12 @@ class HashTable{
     void HashTable::insertItem(int key, string value){
         int hashValue = hashFunction(key);
         auto& cell = table[hashValue];
-
         auto itr = cell.find(key);
         if(itr != cell.end()){
             cout<<"[WARNING] key exit; value replaced."<<endl;
             itr->second = value;
         }else{
-            cell.insert({key, value});
-        }
-    }
+            cell.insert({key, value});}}
 
     void HashTable::removeItem(int key){
         int hashValue = hashFunction(key);
@@ -44,9 +41,7 @@ class HashTable{
             cout << "[INFO] key exits. value removed" << endl;
             cell.erase(itr);
         }else{
-            cout << "[WARNING] item not found " << endl;
-        }
-    }
+            cout << "[WARNING] item not found " << endl;}}
 
     string HashTable::searchTable(int key){
         int hashValue = hashFunction(key);
@@ -77,9 +72,7 @@ int main(){
     HT.insertItem(234,"alex");
     HT.insertItem(231,"sandy");
     HT.insertItem(123,"rob");
-
     HT.printTable();
-
     HT.removeItem(322);
     HT.removeItem(123);
 
